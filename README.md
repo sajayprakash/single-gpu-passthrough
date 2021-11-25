@@ -180,4 +180,13 @@ Choose for Q35 chipset**
 /usr/share/qemu/ovmf-x86_64.bin 
 ```
 
-### Open virt-manager and launch win10 vm
+### Open virt-manager and launch win10 vm!
+#
+
+# Credits
+
+1) [RisingPrism Single GPU Passthrough Guide](https://gitlab.com/risingprismtv/single-gpu-passthrough)
+
+2) [QaidVoid Complete Single-GPU Passthrough Guide](https://github.com/QaidVoid/Complete-Single-GPU-Passthrough)
+
+3) [SomeOrdinaryGamers Single-GPU Passthrough Guide ](https://www.youtube.com/watch?v=BUSrdUoedTo)
