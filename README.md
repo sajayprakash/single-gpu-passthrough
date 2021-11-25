@@ -79,7 +79,7 @@ unix_sock_rw_perms = "0770"
 ```
 
 ``` 
-sudo nano /etc/libvirt/qemu.conf
+sudo vim /etc/libvirt/qemu.conf
 ```
 
 edit the follow lines
@@ -87,7 +87,6 @@ edit the follow lines
 ``` 
 #user = "root" to user = "your username"
 #group = "root" to group = "your username"
-
 ```
 
 ```
