@@ -162,3 +162,5 @@ sudo cp win10.qcow2  /var/lib/libvirt/images/
 ```
 sudo virsh define /path/to/win10.xml
 ```
+
+### Open virt-manager and launch win10 vm
