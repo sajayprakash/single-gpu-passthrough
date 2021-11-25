@@ -115,7 +115,7 @@ sudo cp -r hooks/ /etc/libvirt/
 ```
 
 ### **Copy patch.rom**
-**Note : My patch.rom is only for Zotac GTX 1660 Ti 6 GB, follow [this guide](https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/6)-Preparation-and-placing-of-ROM-file)**
+**Note : My patch.rom is only for Zotac GTX 1660 Ti 6 GB. To make one for your gpu, follow [this guide by Risingprism](https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/home)**
 ```
 sudo mkdir /usr/share/vgabios
 ```
@@ -152,7 +152,7 @@ sudo chown s:s /usr/share/vgabios/patch.rom
 
 6 directories, 6 files 
 ```
-### Place win10.qcow2 file in ```/var/lib/libvirt/images/```
+### Place win10.qcow2 file in /var/lib/libvirt/images/
 **Note : If you don't have the file, just create a win10 virtual machine without GPU passthrough and delete the vm while keeping the storage (qcow2) file** 
 
 ```
