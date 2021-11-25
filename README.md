@@ -162,5 +162,22 @@ sudo cp win10.qcow2  /var/lib/libvirt/images/
 ```
 sudo virsh define /path/to/win10.xml
 ```
+**Note: You have to start customize the vm before installation
+choose win10 as vm name because of scripts.
+Choose for Q35 chipset**
+
+
+**Choose for UEFI firmware:**
+```
+/usr/share/edk2/ovmf/OVMF_CODE.fd
+```
+**Debian / Ubuntu:**
+```
+/usr/share/OVMF/OVMF_CODE_4M.fd
+```
+**Opensuse:**
+```
+/usr/share/qemu/ovmf-x86_64.bin 
+```
 
 ### Open virt-manager and launch win10 vm
