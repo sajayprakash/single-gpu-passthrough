@@ -78,6 +78,22 @@ unix_sock_group = "libvirt"
 unix_sock_rw_perms = "0770"
 ```
 
+``` 
+sudo nano /etc/libvirt/qemu.conf
+```
+
+edit the follow lines
+
+``` 
+#user = "root" to user = "your username"
+#group = "root" to group = "your username"
+
+```
+
+```
+sudo systemctl restart libvirtd
+```
+
 ### **Enable required services**
 <details>
   <summary><b>SystemD</b></summary>
