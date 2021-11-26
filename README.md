@@ -2,6 +2,15 @@
 
 **Note: This guide is configured only for my personal system, changes will be required if you want to do this for your system**
 
+# My system:
+```
+OS: Arch Linux 
+Login Manager: SDDM or Lightdm 
+CPU: AMD Ryzen 5 3600 
+GPU: NVIDIA GeForce GTX 1660 Ti (Zotac) 
+```
+# Edit Grub to enable IOMMU
+
 ```sh
 vim /etc/default/grub
 ```
@@ -33,7 +42,7 @@ for g in `find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V`; do
     done;
 done;
 ```
-### **Install required tools**
+# **Install required tools**
 <details>
   <summary><b>Gentoo Linux</b></summary>
   RECOMMENDED USE FLAGS: app-emulation/virt-manager gtk<br>
@@ -93,7 +102,7 @@ edit the follow lines
 sudo systemctl restart libvirtd
 ```
 
-### **Enable required services**
+# **Enable required services**
 <details>
   <summary><b>SystemD</b></summary>
 
@@ -118,7 +127,7 @@ virsh net-start default
 virsh net-autostart default
 ```
 
-### **Setup Guest OS**
+# **Setup Guest OS**
 ***NOTE: You should replace win10 with your VM's name where applicable*** \
 You should add your user to ***libvirt*** group to be able to run VM without root. And, ***input*** and ***kvm*** group for passing input devices.
 ```sh
@@ -129,7 +138,7 @@ usermod -aG kvm,input,libvirt username
 sudo cp -r hooks/ /etc/libvirt/
 ```
 
-### **Copy patch.rom**
+# **Copy patch.rom**
 **Note : My patch.rom is only for Zotac GTX 1660 Ti 6 GB. To make one for your gpu, follow [this guide by Risingprism](https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/home)**
 ```
 sudo mkdir /usr/share/vgabios
@@ -143,7 +152,7 @@ sudo cp patch.rom /usr/share/vgabios
 sudo chmod -R 660 /usr/share/vgabios/patch.rom
 ```
 
-### Change ``` s:s ``` to your ```username:username```
+### Change s:s to your username:username
 ```
 sudo chown s:s /usr/share/vgabios/patch.rom
 ```
@@ -167,13 +176,13 @@ sudo chown s:s /usr/share/vgabios/patch.rom
 
 6 directories, 6 files 
 ```
-### Place win10.qcow2 file in /var/lib/libvirt/images/
+# Place win10.qcow2 file in /var/lib/libvirt/images/
 **Note : If you don't have the file, just create a win10 virtual machine without GPU passthrough and delete the vm while keeping the storage (qcow2) file** 
 
 ```
 sudo cp win10.qcow2  /var/lib/libvirt/images/
 ```
-### Create win10 vm using the xml
+# Create win10 vm using the xml
 ```
 sudo virsh define /path/to/win10.xml
 ```
@@ -195,7 +204,7 @@ Choose for Q35 chipset**
 /usr/share/qemu/ovmf-x86_64.bin 
 ```
 
-### Open virt-manager and launch win10 vm!
+# Open virt-manager and launch win10 vm!
 #
 
 # Credits
