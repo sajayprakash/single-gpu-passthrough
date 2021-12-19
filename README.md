@@ -188,12 +188,14 @@ sudo chown s:s /var/lib/libvirt/images/win10.qcow2
 ```
 sudo virsh define /path/to/win10.xml
 ```
-**Note: You have to start customize the vm before installation
-choose win10 as vm name because of scripts.
-Choose for Q35 chipset**
+# Final Changes
+**Note: You have to customize the vm before installation,
+choose "win10" as vm name else modify hooks folder scripts.**
+
+Choose ```Q35``` as chipset
 
 
-**Choose for UEFI firmware:**
+**Choose UEFI firmware:**
 ```
 /usr/share/edk2/ovmf/OVMF_CODE.fd
 ```
