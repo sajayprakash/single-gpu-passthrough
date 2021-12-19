@@ -77,6 +77,7 @@ done;
   ```
 </details>
 
+# **Edit permissions for libvirt and qemu**
 ```
 sudo vim /etc/libvirt/libvirtd.conf
 ```
@@ -131,7 +132,7 @@ virsh net-autostart default
 ***NOTE: You should replace win10 with your VM's name where applicable*** \
 You should add your user to ***libvirt*** group to be able to run VM without root. And, ***input*** and ***kvm*** group for passing input devices.
 ```sh
-usermod -aG kvm,input,libvirt username
+usermod -aG kvm,input,libvirt s
 ```
 ### **Copy hooks folder**
 ```sh
@@ -181,6 +182,7 @@ sudo chown s:s /usr/share/vgabios/patch.rom
 
 ```
 sudo cp win10.qcow2  /var/lib/libvirt/images/
+sudo chown s:s /var/lib/libvirt/images/win10.qcow2
 ```
 # Create win10 vm using the xml
 ```
@@ -205,7 +207,6 @@ Choose for Q35 chipset**
 ```
 
 # Open virt-manager and launch win10 vm!
-#
 
 # Credits
 
