@@ -5,7 +5,7 @@
 # My system:
 ```
 OS: Arch Linux 
-Login Manager: SDDM or Lightdm 
+Login Manager: Lightdm 
 CPU: AMD Ryzen 5 3600 
 GPU: NVIDIA GeForce GTX 1660 Ti (Zotac) 
 ```
