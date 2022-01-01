@@ -4,8 +4,8 @@
 
 # My system:
 ```
-OS: Arch Linux 
-Login Manager: SDDM or Lightdm 
+OS: Void Linux 
+Login Manager: Lxdm 
 CPU: AMD Ryzen 5 3600 
 GPU: NVIDIA GeForce GTX 1660 Ti (Zotac) 
 ```
@@ -27,7 +27,7 @@ Edit grub configuration.
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 ```sh
-sudo systemctl reboot
+sudo reboot
 ```
 Make sure that your IOMMU groups are valid. \
 Run the following script to view the IOMMU groups and attached devices. 
@@ -43,84 +43,30 @@ for g in `find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V`; do
 done;
 ```
 # **Install required tools**
-<details>
-  <summary><b>Gentoo Linux</b></summary>
-  RECOMMENDED USE FLAGS: app-emulation/virt-manager gtk<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; app-emulation/qemu spice usb usbredir pulseaudio
-                         
-  ```sh
-  emerge -av qemu virt-manager libvirt ebtables dnsmasq
-  ```
-</details>
+```
+xbps-install -S qemu libvirt virt-manager wget
+```
+# **Use the easy helper script by Linux15**
+```sh
+git clone https://gitlab.com/linux15/void/passthrough_helper_void.git
 
-<details>
-  <summary><b>Arch Linux</b></summary>
+sudo su
 
-  ```sh
-  pacman -S qemu libvirt edk2-ovmf virt-manager dnsmasq ebtables
-  ```
-</details>
+chmod +x gpu_passthrough.sh
 
-<details>
-  <summary><b>Fedora</b></summary>
-
-  ```sh
-  dnf install @virtualization
-  ```
-</details>
-
-<details>
-  <summary><b>Ubuntu</b></summary>
-
-  ```sh
-  apt install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager ovmf
-  ```
-</details>
+./gpu_passthrough.sh
+```
 
 # **Edit permissions for libvirt and qemu**
-```
-sudo vim /etc/libvirt/libvirtd.conf
-```
-add or uncommend the # off the follow lines:
-
-```
-unix_sock_group = "libvirt"
-unix_sock_rw_perms = "0770"
+```sh
+echo 'unix_sock_group = "libvirt"' | sudo tee -a /etc/libvirt/libvirtd.conf
+echo 'unix_sock_rw_perms = "0770"' | sudo tee -a /etc/libvirt/libvirtd.conf
 ```
 
-``` 
-sudo vim /etc/libvirt/qemu.conf
+```sh
+echo 'user = "s"' | sudo tee -a /etc/libvirt/qemu.conf
+echo 'group = "s"' | sudo tee -a /etc/libvirt/qemu.conf
 ```
-
-edit the follow lines
-
-``` 
-#user = "root" to user = "your username"
-#group = "root" to group = "your username"
-```
-
-```
-sudo systemctl restart libvirtd
-```
-
-# **Enable required services**
-<details>
-  <summary><b>SystemD</b></summary>
-
-  ```sh
-  systemctl enable --now libvirtd
-  ```
-</details>
-
-<details>
-  <summary><b>OpenRC</b></summary>
-
-  ```sh
-  rc-update add libvirtd default
-  rc-service libvirtd start
-  ```
-</details>
-
 Sometimes, you might need to start default network manually.
 
 ```sh
@@ -197,15 +143,7 @@ Choose ```Q35``` as chipset
 
 **Choose UEFI firmware:**
 ```
-/usr/share/edk2/ovmf/OVMF_CODE.fd
-```
-**Debian / Ubuntu:**
-```
-/usr/share/OVMF/OVMF_CODE_4M.fd
-```
-**Opensuse:**
-```
-/usr/share/qemu/ovmf-x86_64.bin 
+/usr/share/edk2.git/ovmf-x64/OVMF_CODE-pure-efi.fd
 ```
 
 # Open virt-manager and launch win10 vm!
@@ -217,3 +155,5 @@ Choose ```Q35``` as chipset
 2) [QaidVoid Complete Single-GPU Passthrough Guide](https://github.com/QaidVoid/Complete-Single-GPU-Passthrough)
 
 3) [SomeOrdinaryGamers Single-GPU Passthrough Guide ](https://www.youtube.com/watch?v=BUSrdUoedTo)
+
+4) [linux15 passthrough_helper_void](https://gitlab.com/linux15/void/passthrough_helper_void)
