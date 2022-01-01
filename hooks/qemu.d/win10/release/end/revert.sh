@@ -32,4 +32,6 @@ modprobe  drm
 modprobe  nvidia_uvm
 
 # Restart Display Manager
-systemctl start lightdm.service
+#systemctl start lightdm.service
+sv start lxdm
+

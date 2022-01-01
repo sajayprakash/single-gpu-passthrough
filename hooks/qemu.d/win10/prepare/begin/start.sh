@@ -7,8 +7,9 @@ set -x
 source "/etc/libvirt/hooks/kvm.conf"
 
 # Stop display manager
-systemctl stop lightdm.service
-
+#systemctl stop lightdm.service
+sv stop lxdm
+#xkill -a
 ## Uncomment the following line if you use GDM
 #killall gdm-x-session
 
