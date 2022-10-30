@@ -12,7 +12,7 @@ GPU: NVIDIA GeForce GTX 1660 Ti (Zotac)
 # Edit Grub to enable IOMMU
 
 ```sh
-vim /etc/default/grub
+sudoedit /etc/default/grub
 ```
 
 Edit grub configuration.
@@ -49,7 +49,7 @@ done;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; app-emulation/qemu spice usb usbredir pulseaudio
                          
   ```sh
-  emerge -av qemu virt-manager libvirt ebtables dnsmasq
+  sudo emerge -av qemu virt-manager libvirt ebtables dnsmasq
   ```
 </details>
 
@@ -57,7 +57,7 @@ done;
   <summary><b>Arch Linux</b></summary>
 
   ```sh
-  pacman -S qemu libvirt edk2-ovmf virt-manager dnsmasq ebtables
+  sudo pacman -S qemu libvirt edk2-ovmf virt-manager dnsmasq ebtables
   ```
 </details>
 
@@ -65,7 +65,7 @@ done;
   <summary><b>Fedora</b></summary>
 
   ```sh
-  dnf install @virtualization
+  sudo dnf install @virtualization
   ```
 </details>
 
@@ -79,7 +79,7 @@ done;
 
 # **Edit permissions for libvirt and qemu**
 ```
-sudo vim /etc/libvirt/libvirtd.conf
+sudoedit /etc/libvirt/libvirtd.conf
 ```
 add or uncommend the # off the follow lines:
 
@@ -108,7 +108,7 @@ sudo systemctl restart libvirtd
   <summary><b>SystemD</b></summary>
 
   ```sh
-  systemctl enable --now libvirtd
+  sudo systemctl enable --now libvirtd
   ```
 </details>
 
@@ -124,15 +124,15 @@ sudo systemctl restart libvirtd
 Sometimes, you might need to start default network manually.
 
 ```sh
-virsh net-start default
-virsh net-autostart default
+sudo virsh net-start default
+sudo virsh net-autostart default
 ```
 
 # **Setup Guest OS**
 ***NOTE: You should replace win10 with your VM's name where applicable*** \
 You should add your user to ***libvirt*** group to be able to run VM without root. And, ***input*** and ***kvm*** group for passing input devices.
 ```sh
-usermod -aG kvm,input,libvirt s
+sudo usermod -aG kvm,input,libvirt s
 ```
 ### **Copy hooks folder**
 ```sh
